@@ -2,13 +2,9 @@ import yt_dlp
 import os
 import shutil
 import time
+
 PATH_OUTPUT = os.path.abspath('./!OUTPUT/')
 PATH_FFMPEG = os.path.abspath('./bin/')
-
-
-def wait_before_replace(d):
-    if d['status'] == 'finished':
-        time.sleep(1)  # Подождать, пока файл не освободится
 
 def download_audio_from_youtube(url):
     temp_dir = 'temp_audio'
@@ -25,7 +21,6 @@ def download_audio_from_youtube(url):
         'quiet': False,
         'no_warnings': True,
         'ffmpeg_location': PATH_FFMPEG,
-        #'postprocessor_hooks': [wait_before_replace],
     }
 
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
